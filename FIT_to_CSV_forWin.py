@@ -10,7 +10,7 @@ allowed_fields = ['timestamp','position_lat','position_long', 'distance',
 required_fields = ['timestamp']
 
 UTC = pytz.UTC
-CST = pytz.timezone('US/Pacific')
+Berlin = pytz.timezone('Europe/Berlin')
 
 def main():
     files = os.listdir()
@@ -43,7 +43,7 @@ def write_fitfile_to_csv(fitfile, output_file='test_output.csv'):
             #print(field) print varaibles
             if field.name in allowed_fields:
                 if field.name=='timestamp':
-                    mdata[field.name] = UTC.localize(field.value).astimezone(CST)
+                    mdata[field.name] = UTC.localize(field.value).astimezone(Berlin)
                 else:
                     mdata[field.name] = field.value    
         for rf in required_fields:
